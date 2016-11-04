@@ -1,0 +1,18 @@
+{
+    "title":"budget-buddy_companion_app",
+    "description":"This template can be used to create a basic KinomaJS application .",
+    "id":"budget-buddy-companion-app.project.kinoma.marvell.com",
+    "tags":[
+        "emptySample"
+    ],
+    "Create":{
+        "main":"main"
+    },
+    "Element":{
+        "main":"main"
+    },
+    
+    "iap140": {
+    "main":"main"
+    }
+}
