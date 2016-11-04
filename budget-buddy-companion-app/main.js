@@ -16,21 +16,29 @@ let yellowbudgetSkin = new Skin({ fill: "#F2D74C" });
 let textStyle = new Style({ font: "bold 20px", color: "black" });
 let bigStyle = new Style({ font: "bold 48px", color: "black" });
 
-
+//Top navbar template
 let topbar = Container.template($ => ({
     top: 0, bottom: 450, left: 0, right: 0, skin: shoppingbarSkin,
     contents: [
-    //back button
+    //add back button
     ]
 }));
 
-
+//This is the blank screen template
 var ScreenTemplate = Column.template($ => ({
     top: 0, bottom: 0, left: 0, right: 0, skin: budgetbuddySkin,
     contents: [
         new topbar(),
     ]
 }));
+
+//first starting screen with start shop button
+var startScreenTemplate = new ScreenTemplate();
+
+//startScreenTemplate.add()
+
+//SHOPPING LIST
+var shoppinglistScreenTemplate = new ScreenTemplate();
 
 let currentScreen = new ScreenTemplate();
 application.add(currentScreen)
