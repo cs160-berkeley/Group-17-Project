@@ -31,7 +31,10 @@ var goCheckout = function() {
 //*********************Cart Screen Templates ********************//
 
 //-- Template for My List button on the top left
-let myListButtonTemplate = Button.template($ => ({  height: 25, left: 0, top: 0, skin: shoppingbarSkin,    contents: [        Label($, {height: 25, left: 5, top: 0, string: $.text, style: whiteTextStyle})    ],    Behavior: class extends ButtonBehavior {        onTouchEnded(button){                application.remove(currentScreen);                currentScreen = new ScreenTemplate;                currentScreen.add(new topbar());                currentScreen.add(new shoppingListToCartButtonTemplate());                currentScreen.add(new AdditemButtonTemplate2());                application.add(currentScreen);        }    }}));
+let myListButtonTemplate = Button.template($ => ({  height: 25, left: 0, top: 0, skin: shoppingbarSkin,    contents: [        Label($, {height: 25, left: 5, top: 0, string: $.text, style: whiteTextStyle})    ],    Behavior: class extends ButtonBehavior {        onTouchEnded(button){                application.remove(currentScreen);                currentScreen = new ScreenTemplate;                currentScreen.add(new topbar());                currentScreen.add(new shoppingListToCartButtonTemplate());
+                currentScreen.add(new shoppinglistitemContainerTemplate(0));
+                currentScreen.add(new shoppinglistitemContainerTemplate(1));
+                currentScreen.add(new shoppinglistitemContainerTemplate(2));                currentScreen.add(new AdditemButtonTemplate2());                application.add(currentScreen);        }    }}));
 
 //second shopping list screen buttons    let shoppingListToCartButtonTemplate = Button.template($ => ({      height: 30, left: 0, top: -30, skin: shoppingbarSkin,        contents: [            Label($, {height: 30, left: 5, top: 2, string: "Cart", style: whiteTextStyle})        ],        Behavior: class extends ButtonBehavior {            onTouchEnded(button){                application.remove(currentScreen);                currentScreen = cartScreenTemplate;                application.add(currentScreen);            }        }    }));
     
