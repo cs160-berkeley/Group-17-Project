@@ -202,11 +202,11 @@ let budgetWindowPosition = new Container({
 	content: budgetWindow,
 });
 
-//This is the screen template. Creates a column object with the navBar, budget window, checkout button, and cart list.var ScreenTemplate = Container.template($ => ({    top: 0, bottom: 0, left: 0, right: 0, skin: budgetbuddySkin,    contents: [
+//This is the screen template. Creates a column object with the navBar, budget window, checkout button, and cart list.export var cartScreenTemplate = Container.template($ => ({    top: 0, bottom: 0, left: 0, right: 0, skin: budgetbuddySkin,    contents: [
     	navBarPosition,
     	cartWindowPosition,
     	budgetWindow, 
     	checkoutButtonPosition,    ]}));
 
-var cartScreen = new ScreenTemplate();
+var cartScreen = new cartScreenTemplate();
 application.add(cartScreen);
