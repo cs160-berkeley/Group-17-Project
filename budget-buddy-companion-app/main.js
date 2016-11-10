@@ -2,6 +2,7 @@
 //********************* Data ********************//
 let store = [{item: "Chex Mix Bold", cost: 2}, {item: "Root Beer", cost: .79}, {item: "12 Eggs XLRG AA", cost: 3.49}, {item: "1 gal 2% Milk", cost: 4.29}, {item: "Oroweat Whole Wheat", cost: 2.99}];
 let cartContents = [];
+let idToCostMapping = {};
 let budget = {total: 0, budget: 0, remaining: 0, id: 0};
 
 
@@ -89,6 +90,7 @@ let listScreen = new Column({
 let addItemToCart = function() {
 	let purchasedItem = store[Math.floor(Math.random() * store.length)];
 	budget.total += purchasedItem.cost;
+	idToCostMapping[budget.id] = purchasedItem.cost;
 	let costItemIndex = {cost: purchasedItem.cost, item: purchasedItem.item, id: budget.id};
 	budget.id = budget.id + 1;
 	purchasedItem = new shoppingcartitemContainerTemplate(costItemIndex);
@@ -107,9 +109,11 @@ let removeFromCart = function(id) {
 	for(var i = 0; i < cartContents.length; i++) {
 		if (cartContents[i].first.name == id) {
 			itemToDelete = cartContents[i];
+			budget.total = parseFloat(budget.total) - parseFloat(idToCostMapping[id]);
 			index = i;
 		}
 	}
+	delete idToCostMapping[id];
 	listScreen.remove(itemToDelete);	// Possibly change this if implementing scroller
 	cartContents.splice(index, 1);
 }
@@ -219,7 +223,7 @@ let budgetWindowPosition = new Container({
     	checkoutButtonPosition,    ]}));
 
 //var cartScreen = new cartScreenTemplate();
-//application.add(cartScreen);//text fieldlet whiteSkin = new Skin({ fill: "gray" });let nameInputSkin = new Skin({ borders: { left: 2, right: 2, top: 2, bottom: 2 }, stroke: 'gray' });let fieldStyle = new Style({ color: 'gray', font: 'bold 20px', horizontal: 'left',    vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });let fieldHintStyle = new Style({ color: '#aaa', font: '15px', horizontal: 'left',    vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });let MyField = Container.template($ => ({     bottom:5, width: 140, height: 30, skin: nameInputSkin, contents: [        Scroller($, {             left: 4, right: 4, top: 4, bottom: 4, active: true,             Behavior: FieldScrollerBehavior, clip: true,             contents: [                Label($, {                     left: 0, top: 0, bottom: 0, skin: fieldLabelSkin,                     style: fieldStyle, anchor: 'NAME',                    editable: true, string: $.name,                    Behavior: class extends FieldLabelBehavior {                        onEdited(label) {                            let data = this.data;                            data.name = label.string;
+//application.add(cartScreen);//text fieldlet whiteSkin = new Skin({ fill: "gray" });let nameInputSkin = new Skin({ borders: { left: 2, right: 2, top: 2, bottom: 2 }, stroke: 'gray' });let fieldStyle = new Style({ color: 'gray', font: 'bold 20px', horizontal: 'left',    vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });let fieldHintStyle = new Style({ color: '#aaa', font: '15px', horizontal: 'left',    vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });let fieldLabelSkin = new Skin({ fill: ['transparent', 'transparent', '#C0C0C0', '#acd473'] });let MyField = Container.template($ => ({     bottom:5, width: 140, height: 40, skin: nameInputSkin, contents: [        Scroller($, {             left: 4, right: 4, top: 4, bottom: 4, active: true,             Behavior: FieldScrollerBehavior, clip: true,             contents: [                Label($, {                     left: 0, top: 0, bottom: 0, skin: fieldLabelSkin,                     style: fieldStyle, anchor: 'NAME',                    editable: true, string: $.name,                    Behavior: class extends FieldLabelBehavior {                        onEdited(label) {                            let data = this.data;                            data.name = label.string;
                             if(parseInt(data.name)) {                            	budget.budget = parseInt(data.name);  
                             }                   
                             else {                            	budget.budget = 0;      
