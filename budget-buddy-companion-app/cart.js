@@ -29,7 +29,7 @@ let roundDollars = function(num) {
 	return Math.floor(num*100)/100.0;
 }
 
-//********************* Templates ********************//
+//*********************Cart Screen Templates ********************//
 
 //-- Template for My List button on the top left
 let myListButtonTemplate = Button.template($ => ({  height: 25, left: 0, top: 0, skin: shoppingbarSkin,    contents: [        Label($, {height: 25, left: 5, top: 0, string: $.text, style: whiteTextStyle})    ],    Behavior: class extends ButtonBehavior {        onTouchEnded(button){            application.remove(currentScreen);            currentScreen = startScreen;	//******** Change this to the "My List" Screen ***********//            application.add(currentScreen);        }    }}));
