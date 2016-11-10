@@ -48,7 +48,7 @@ let myListButtonTemplate = Button.template($ => ({  height: 25, left: 0, top: 0
 
 //-- Template for Edit Budget and Checkout buttons
 let cartButtonTemplate = Button.template($ => ({	height: 20, left: 5, right: 5, top: 2.5, bottom: 2.5, skin: $.skin,    contents: [
-	    Label($, {height: 20, string: $.text, style: blackTextStyle})	    ],    Behavior: class extends ButtonBehavior {	    onTouchEnded(button){
+	    Label($, {height: 20, string: $.text, style: whiteTextStyle})	    ],    Behavior: class extends ButtonBehavior {	    onTouchEnded(button){
 	    	$.buttonFunction();        }    }}));
     
     
