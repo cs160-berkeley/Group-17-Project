@@ -208,5 +208,5 @@ let budgetWindowPosition = new Container({
     	budgetWindow, 
     	checkoutButtonPosition,    ]}));
 
-var cartScreen = new cartScreenTemplate();
-application.add(cartScreen);
+//var cartScreen = new cartScreenTemplate();
+//application.add(cartScreen);
