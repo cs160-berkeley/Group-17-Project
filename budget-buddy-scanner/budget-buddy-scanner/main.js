@@ -97,11 +97,11 @@ class AppBehavior extends Behavior {
 }
 
 // Interface, needs a scan button and a checkout button.
-let buttons = new Line({
+let buttons = new Column({
 	left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
 	contents: [
 		new ButtonTemplate({ textForLabel: "Checkout", name: "checkout", }),
-
+		new ButtonTemplate({ textForLabel: "Scan Item", name: "scanner", }),
 	]
 });
 let mainContainer = MainContainer();
