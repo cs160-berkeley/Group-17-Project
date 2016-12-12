@@ -27,6 +27,8 @@ let redSkin = new Skin ({fill: 'red'});
 
 let bigText = new Style({ font: "bold 48px", color: "#333333" });
 
+let images = ["chex", "mug", "eggs", "milk", "bread", "ketchup", "cereal", "oj", "toothpaste", "hotdog"];
+
 let ButtonTemplate = Button.template($ => ({
 	top: 10, bottom: 10, left: 10, right: 10, name: $.name, height: 60,
 	contents: [
@@ -42,8 +44,11 @@ let ButtonTemplate = Button.template($ => ({
 let MainContainer = Container.template($ => ({
     left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
     contents: [
+    	
     ]
 }));
+
+let foodImage = new Picture({top: 10, height: 100});
 
 let Pins = require("pins");
 
@@ -80,17 +85,13 @@ class AppBehavior extends Behavior {
 			else {
 				Pins.share("ws", {zeroconf: true, name: "scannerPins"});
 				trace("Pins shared \n");
-				/*Pins.repeat("/petPress/read", 500, function(result) {
+				Pins.repeat("/barcode/read", 300, function(result) {
 					if (result) {
-						Pins.invoke("/foodLed/write", 0); 
-						eat.skin = whiteSkin;
+						trace(result);
+						trace(result*10);
+						foodImage.url = "assets/" + images[Math.floor(result*10)] + ".png";
 					}
 				});
-				Pins.repeat("/foodLed/read", 500, function(result) {
-					if (result) {
-						eat.skin = redSkin;
-					}
-				});*/
 			}
 		});		
 	}
@@ -100,10 +101,12 @@ class AppBehavior extends Behavior {
 let buttons = new Column({
 	left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
 	contents: [
-		new ButtonTemplate({ textForLabel: "Checkout", name: "checkout", }),
+		foodImage,
 		new ButtonTemplate({ textForLabel: "Scan", name: "scanner", }),
+		new ButtonTemplate({ textForLabel: "Checkout", name: "checkout", }),
 	]
 });
+
 let mainContainer = MainContainer();
 mainContainer.add(buttons);
 application.add(mainContainer);
